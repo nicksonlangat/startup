@@ -21,8 +21,9 @@ class Opening(models.Model):
 	description=models.TextField() 
 	requirements=models.TextField() 
 	location=models.CharField(max_length=100)
-	type=models.CharField(max_length=20, choices=TYPE_CHOICES) 
+	type=models.CharField(max_length=20, choices=TYPE_CHOICES)
 	date_line=models.DateTimeField
+	created=models.DateTimeField(auto_now_add=True)
 	
 	
 	def __str__(self):
