@@ -16,6 +16,7 @@ class Category(models.Model):
 
 class Opening(models.Model):
 	title=models.CharField(max_length=100)
+	recruiter=models.CharField(max_length=50)
 	category=models.ManyToManyField('Category', related_name='jobs')
 	description=models.TextField() 
 	requirements=models.TextField() 
