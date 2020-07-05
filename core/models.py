@@ -1,6 +1,5 @@
 from django.db import models
-from datetime import datetime    
-
+from datetime import datetime
 # Create your models here.
 TYPE_CHOICES = [
     ('Remote Fulltime ', 'Remote Fulltime '),
@@ -10,10 +9,8 @@ TYPE_CHOICES = [
 ]
 class Category(models.Model):
 	name=models.CharField(max_length=50)
-
 	class Meta:
 		verbose_name_plural="Categories"
-	
 	def __str__(self):
 		return self.name
 
@@ -25,17 +22,29 @@ class Opening(models.Model):
 	requirements=models.TextField() 
 	location=models.CharField(max_length=100)
 	type=models.CharField(max_length=20, choices=TYPE_CHOICES)
-	date_line=models.DateTimeField
+	date_line=models.DateTimeField()
 	created=models.DateTimeField(auto_now_add=True)
-	
-	
 	def __str__(self):
 		return self.title
 		
 class Patner(models.Model):
 	name=models.CharField(max_length =150)
 	logo=models.FileField(upload_to="patners/%Y/%m/%d")
-	
+	def __str__(self):
+		return self.name
+
+class Talent(models.Model):
+	name=models.CharField(max_length=60)
+	title=models.CharField(max_length=60)
+	image=models.ImageField(upload_to="talents/%Y/%m/%d")
+	def __str__(self):
+		return self.name
+
+class Testimony(models.Model):
+	name=models.CharField(max_length=60)
+	body=models.TextField()
+	class Meta:
+		verbose_name_plural="Testimonies"
 	def __str__(self):
 		return self.name
 
