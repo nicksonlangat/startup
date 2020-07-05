@@ -8,11 +8,11 @@
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">4536+ Jobs listed</h5>
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">1000+ Jobs listed</h5>
                             <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
-                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide provide employers with some of the best talents on the planet and we also do the same for job seekers. Join us today!</p>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                                <a href="#" class="boxed-btn3">Upload your Resume</a>
+                                <a href="{% url 'upload' %}" class="boxed-btn3">Upload your Resume</a>
                             </div>
                         </div>
                     </div>
@@ -38,9 +38,9 @@
                     <div class="single_input">
                         <select class="wide" >
                             <option data-display="Location">Location</option>
-                            <option value="1">Dhaka</option>
-                            <option value="2">Rangpur</option>
-                            <option value="4">Sylet</option>
+                            <option value="1">Nairobi</option>
+                            <option value="2">Kericho</option>
+                            <option value="4">Mombasa</option>
                           </select>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                     <div class="single_input">
                         <select class="wide">
                             <option data-display="Category">Category</option>
-                            <option value="1">Category 1</option>
-                            <option value="2">Category 2</option>
-                            <option value="4">Category 3</option>
+                            {% for category in categories %}
+                            <option value="1">{{category.name}}</option>
+                            {% endfor %}
                           </select>
                     </div>
                 </div>
@@ -63,15 +63,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="popular_search d-flex align-items-center">
-                        <span>Popular Search:</span>
+                        <span>Talents In:</span>
                         <ul>
-                            <li><a href="#">Design & Creative</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Administration</a></li>
-                            <li><a href="#">Teaching & Education</a></li>
-                            <li><a href="#">Engineering</a></li>
-                            <li><a href="#">Software & Web</a></li>
-                            <li><a href="#">Telemarketing</a></li>
+                            {% for category in categories %}
+                            <li><a href="#">{{category.name}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -129,7 +125,7 @@
                                     <img src="{% static 'img/svg_icon/1.svg'%}" alt="">
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>{{opening.title}}</h4></a>
+                                    <a href="{% url 'detail' opening.id %}"><h4>{{opening.title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
                                             <p> <i class="fa fa-map-marker"></i>{{opening.location}}</p>
@@ -143,7 +139,7 @@
                             <div class="jobs_right">
                                 <div class="apply_now">
                                     <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
+                                    <a href="{% url 'detail' opening.id %}" class="boxed-btn3">Apply Now</a>
                                 </div>
                                 <div class="date">
                                     <p>Date line: {{opening.date_line|date}}</p>
@@ -195,11 +191,7 @@
                         <h3>Our Patners</h3>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="brouse_job text-right">
-                        <a href="jobs.html" class="boxed-btn4">Browse More Job</a>
-                    </div>
-                </div>
+                
             </div>
             <div class="row">
             	{% for patner in patners %}
@@ -224,14 +216,14 @@
                 <div class="col-lg-5 offset-lg-1 col-md-6">
                     <div class="searching_text">
                         <h3>Looking for a Job?</h3>
-                        <p>We provide online instant cash loans with quick approval </p>
-                        <a href="#" class="boxed-btn3">Browse Job</a>
+                        <p>Browse through our listings and find yourself your dream job!</p>
+                        <a href="#" class="boxed-btn3">Browse Jobs</a>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 col-md-6">
                     <div class="searching_text">
-                        <h3>Looking for a Expert?</h3>
-                        <p>We provide online instant cash loans with quick approval </p>
+                        <h3>You are a recruiter?</h3>
+                        <p>Post it with us and you can be sure to get the best talents!</p>
                         <a href="#" class="boxed-btn3">Post a Job</a>
                     </div>
                 </div>

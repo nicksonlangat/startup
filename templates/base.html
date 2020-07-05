@@ -49,22 +49,17 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">home</a></li>
-                                            <li><a href="jobs.html">Browse Job</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                            <li><a href="{% url 'home'%}">Home</a></li>
+                                        
+                                            <li><a href="#">Pages<i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">job details </a></li>
-                                                    <li><a href="elements.html">elements</a></li>
+                                                    <li><a href="#">Talents</a></li>
+                                                    <li><a href="#">Recruiters</a></li>
+                                                    <li><a href="#">Our Team</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            
+                                            <li><a href="contact.html">Contact Us</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -103,9 +98,9 @@
                                 </a>
                             </div>
                             <p>
-                                finloan@support.com <br>
-                                +10 873 672 6782 <br>
-                                600/D, Green road, NewYork
+                                talentstack@support.com <br>
+                                +254 712 122 122 <br>
+                                Galaxy City,Konza CBD, Kenya
                             </p>
                             <div class="socail_links">
                                 <ul>
@@ -141,8 +136,8 @@
                             </h3>
                             <ul>
                                 <li><a href="#">About </a></li>
-                                <li><a href="#"> Pricing</a></li>
-                                <li><a href="#">Carrier Tips</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Career Tips</a></li>
                                 <li><a href="#">FAQ</a></li>
                             </ul>
 
@@ -154,24 +149,22 @@
                                 Category
                             </h3>
                             <ul>
-                                <li><a href="#">Design & Art</a></li>
-                                <li><a href="#">Engineering</a></li>
-                                <li><a href="#">Sales & Marketing</a></li>
-                                <li><a href="#">Finance</a></li>
+                                {% for x in categories %}
+                                <li><a href="#">{{x.name}}</a></li>
+                                {%endfor%}
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-6 col-lg-4">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.3s" data-wow-delay=".6s">
                             <h3 class="footer_title">
-                                Subscribe
+                            Newsletter
                             </h3>
                             <form action="#" class="newsletter_form">
                                 <input type="text" placeholder="Enter your mail">
                                 <button type="submit">Subscribe</button>
                             </form>
-                            <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
-                                luckily.</p>
+                            <p class="newsletter_text">We promise to send only data that you are interested in, unsubscribe anytime..</p>
                         </div>
                     </div>
                 </div>
@@ -184,7 +177,7 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | TalentStack is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="http://nickyadams.pythonanywhere.com/portfolio" target="_blank">Nicky</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

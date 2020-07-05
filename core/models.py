@@ -18,12 +18,28 @@ class Opening(models.Model):
 	title=models.CharField(max_length=100)
 	recruiter=models.CharField(max_length=50)
 	category=models.ManyToManyField('Category', related_name='jobs')
-	description=models.TextField() 
-	requirements=models.TextField() 
+	description=models.TextField()
 	location=models.CharField(max_length=100)
 	type=models.CharField(max_length=20, choices=TYPE_CHOICES)
 	date_line=models.DateTimeField()
 	created=models.DateTimeField(auto_now_add=True)
+	salary=models.PositiveIntegerField()
+	qualification_1=models.CharField(max_length=300)
+	qualification_2=models.CharField(max_length=300)
+	qualification_3=models.CharField(max_length=300)
+	qualification_4=models.CharField(max_length=300)
+	qualification_5=models.CharField(max_length=300)
+	benefit_1=models.CharField(max_length=300)
+	benefit_2=models.CharField(max_length=300)
+	benefit_3=models.CharField(max_length=300)
+	benefit_4=models.CharField(max_length=300)
+	benefit_5=models.CharField(max_length=300)
+	role_1=models.CharField(max_length=300)
+	role_2=models.CharField(max_length=300)
+	role_3=models.CharField(max_length=300)
+	role_4=models.CharField(max_length=300)
+	role_5=models.CharField(max_length=300)
+
 	def __str__(self):
 		return self.title
 		
@@ -47,6 +63,9 @@ class Testimony(models.Model):
 		verbose_name_plural="Testimonies"
 	def __str__(self):
 		return self.name
+
+class Resume(models.Model):
+	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
 
 
 		
