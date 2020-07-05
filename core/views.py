@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, render,redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 from .models import *
-from .forms import ResumeForm
+from .forms import *
 
 # Create your views here.
 def index(request):
@@ -41,3 +43,27 @@ def resume(request):
     # Render list page with the documents and the form
     context = {'documents': documents, 'form': form}
     return render(request, 'resume_list.html', context)
+    
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "Website Inquiry"
+			body = {
+ 
+		    
+			'first_name': form.cleaned_data['first_name'], 
+			'last_name': form.cleaned_data['last_name'], 
+			'email': form.cleaned_data['email_address'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
+
+			try:
+				send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			return redirect ("/")
+      
+	form = ContactForm()
+	return render(request, "contact.html", {'form':form})
