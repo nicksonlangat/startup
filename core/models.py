@@ -10,6 +10,9 @@ TYPE_CHOICES = [
 ]
 class Category(models.Model):
 	name=models.CharField(max_length=50)
+
+	class Meta:
+		verbose_name_plural="Categories"
 	
 	def __str__(self):
 		return self.name
@@ -29,11 +32,14 @@ class Opening(models.Model):
 	def __str__(self):
 		return self.title
 		
-class Patners(models.Model):
-	name=models.CharField(max_length =150) 
+class Patner(models.Model):
+	name=models.CharField(max_length =150)
+	logo=models.FileField(upload_to="patners/%Y/%m/%d")
 	
 	def __str__(self):
 		return self.name
+
+
 		
 		
 	

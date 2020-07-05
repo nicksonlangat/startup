@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import Category, Opening, Patners
+from .models import Category, Opening, Patner
 
 # Create your views here.
 def index(request):
 	categories=Category.objects.all()
 	openings=Opening.objects.all()
-	patners=Patners.objects.all()
+	patners=Patner.objects.all()
 	context ={
 	"categories" : categories, 
 	"openings" :openings, 
