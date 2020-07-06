@@ -67,3 +67,30 @@ def contact(request):
       
 	form = ContactForm()
 	return render(request, "contact.html", {'form':form})
+
+
+def apply(request):
+  if request.method == 'POST':
+    opening_id = request.POST['opening_id']
+    opening = request.POST['opening']
+    name = request.POST['name']
+    email = request.POST['email']
+    website = request.POST['website']
+    resume = request.POST['resume']
+    cover_letter = request.POST['cover_letter']
+    user_id = request.POST['user_id']
+    recruiter_email = request.POST['recruiter_email']
+
+    #  Check if user has applied already
+    if request.user.is_authenticated:
+      user_id = request.user.id
+      has_applied = Application.objects.all().filter(opening_id=opening_id, user_id=user_id)
+      if has_applied:
+        messages.error(request, 'You have already submitted an application for this opening')
+        return redirect('/')
+
+    application = Application(opening=opening, opening_id=opening_id, name=name, email=email, website=website, cover_letter=cover_letter, user_id=user_id )
+
+    application.save()
+    messages.success(request, 'Your request has been submitted successfully!')
+    return redirect('/')

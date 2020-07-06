@@ -17,6 +17,7 @@ class Category(models.Model):
 class Opening(models.Model):
 	title=models.CharField(max_length=100)
 	recruiter=models.CharField(max_length=50)
+	recruiter_email=models.EmailField(max_length=50)
 	category=models.ManyToManyField('Category', related_name='jobs')
 	description=models.TextField()
 	location=models.CharField(max_length=100)
@@ -66,6 +67,19 @@ class Testimony(models.Model):
 
 class Resume(models.Model):
 	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+	
+class Application(models.Model):
+  opening = models.CharField(max_length=200)
+  opening_id = models.IntegerField()
+  name = models.CharField(max_length=200)
+  email = models.CharField(max_length=100)
+  website = models.CharField(max_length=100)
+  resume = models.FileField(upload_to='applications/%Y/%m/%d')
+  cover_letter = models.TextField(blank=True)
+  application_date = models.DateTimeField(default=datetime.now, blank=True)
+  user_id = models.IntegerField(blank=True)
+  def __str__(self):
+    return self.name
 
 
 		

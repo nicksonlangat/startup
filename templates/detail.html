@@ -114,21 +114,29 @@
                     </div>
                     <div class="apply_job_form white-bg">
                         <h4>Apply for the job</h4>
-                        <form action="#">
+                        <form action="{% url 'apply' %}">
+                        	{% csrf_token %}
+                            {% if user.is_authenticated %}
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            {% else %}
+                            <input type="hidden" name="user_id" value="0">
+                            {% endif %}
+                            <input type="hidden" name="recruiter_email" value="{{ opening.recruiter.email }}">
+                            <input type="hidden" name="opening_id" value="{{ opening.id }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Your name">
+                                        <input type="text" name="name" placeholder="Your name" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Email">
+                                        <input type="text" name="email" placeholder="Email" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input_field">
-                                        <input type="text" placeholder="Website/Portfolio link">
+                                        <input type="text" name="website" placeholder="Website/Portfolio link">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -138,14 +146,14 @@
                                           </button>
                                         </div>
                                         <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
-                                          <label class="custom-file-label" for="inputGroupFile03">Upload CV</label>
+                                          <input type="file" name="resume" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+                                          <label class="custom-file-label" for="inputGroupFile03">Resume</label>
                                         </div>
                                       </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input_field">
-                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Tell us why you are the best talent......"></textarea>
+                                        <textarea name="cover_letter" id="" cols="30" rows="10" placeholder="Tell us why you are the best talent......"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
